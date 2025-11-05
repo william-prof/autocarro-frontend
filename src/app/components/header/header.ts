@@ -1,19 +1,23 @@
 import { Component, ViewChild } from '@angular/core';
-import { Modal } from '../modal/modal';
+import { LoginComponent } from '../login/login';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [Modal],
+  imports: [CommonModule, LoginComponent],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
-  @ViewChild('modalTeste') modalTeste!: Modal;
+  @ViewChild('loginModal') loginModal!: LoginComponent;
 
-  showModal() {
-    this.modalTeste.open();
-    
+  openLoginModal(){
+    this.loginModal.open();
+  }
+
+  onSwitchToLogin(): void {
+    setTimeout(() => this.loginModal.open(), 100);
   }
 
 }
