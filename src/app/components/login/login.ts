@@ -51,11 +51,13 @@ export class LoginComponent {
 
     this.authService.login(this.loginData).subscribe({
       next: (response) => {
+        this.authService.setAuthData(response);
         console.log(response);
         this.isLoading = false;
+        this.close();
       },
-      error: (error) => {
-        console.log(error);
+      error: (errorResponse) => {
+        alert(errorResponse.error.message);
         this.isLoading = false;
       }
     })
